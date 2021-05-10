@@ -13,6 +13,7 @@ class TodosController extends Controller
      */
     public function index()
     {
+        //show todos page
        return view('index');
     }
 
@@ -23,12 +24,19 @@ class TodosController extends Controller
      */
     public function create(Request $request)
     {
-
-       
-        $input = Input::all();
-        $namelist = $request->input('namel');
+        $msg = $request->name;
+        if(!empty($msg)){
+            $tasks = Todos::create([
+                'name' => $request->name,
+                'category' => $request->category,
+                'status' => $request->status,
+                ]);
+            return response()->json(array('msg' => $msg), 200); 
+        }else {
+            $msg ="The field is empty";
+            return response()->json(array('msg' => $msg), 200);
+        }
         
-        return response()->json(array('msg' => $namelist), 200);
         //
     }
 
