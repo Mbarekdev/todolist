@@ -1,0 +1,164 @@
+/* Declare variables for font, color, background-color */
+:root {
+    --Bcolor: rgba(235, 235, 235, 0.397);
+    --Tcolor: rgba(218, 125, 125, 0.452);
+    --Ftype: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* init the css properties */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style the to do list interacting with bootstrap classes and style */
+html,
+body {
+    background-color: var(--Bcolor);
+    height: 100%;
+    width: 100%;
+}
+
+.container > h1 {
+    color: var(--Tcolor);
+    font-family: var(--Ftype);
+    font-size: 6rem;
+    font-weight: 100;
+    text-align: center;
+}
+
+.container > form > .form-row > .col-3 {
+    position: relative;
+    top: -45px;
+    float: right;
+    left: 74%;
+}
+
+.container > form > .form-row input {
+    height: 53px;
+    font-family: var(--Ftype);
+    font-size: 1.4rem;
+    font-weight: 200;
+    color: rgba(82, 82, 82, 0.582);
+    box-shadow: 1px 2px 4px 1.1px rgba(142, 142, 142, 0.25);
+}
+
+.container > form > .form-row input::placeholder {
+    font-family: var(--Ftype);
+    font-size: 1.4rem;
+    font-weight: 100;
+    color: rgba(182, 182, 182, 0.233);
+}
+
+.form-control:focus {
+    color: rgba(82, 82, 82, 0.582);
+    border-color: rgba(82, 82, 82, 0.582);
+    outline: 0;
+    box-shadow: none;
+}
+
+.container > form > .form-row > .textlist {
+    height: 53px;
+    font-family: var(--Ftype);
+    font-size: 1.4rem;
+    font-weight: 200;
+    color: rgba(82, 82, 82, 0.582);
+    box-shadow: 1px 2px 4px 1.1px rgba(142, 142, 142, 0.25);
+}
+
+.container > form > .form-row > .result {
+    position: relative;
+    top: -40px;
+}
+
+.container > form > .form-row > .result > input {
+    background-color: white;
+    cursor: default;
+}
+
+.container > form > .form-row > .result > input:focus {
+    border: none;
+}
+
+.form-control {
+    border-radius: 0 !important;
+}
+
+.container .listManager {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    position: relative;
+    top: -64px;
+    background-color: white;
+    padding: 14px;
+    box-shadow: 1px 2px 4px 1.1px rgba(142, 142, 142, 0.25);
+}
+
+.container .listManager .actions::after {
+    content: " ";
+    border-bottom: 2px solid lightgray;
+}
+.container .listManager .items {
+    padding-right: 5px;
+    font-family: var(--Ftype);
+    color: rgb(187, 187, 187);
+    font-weight: 100;
+    font-size: 0.9rem;
+}
+.container .listManager .items a {
+    text-decoration: none;
+    color: rgb(187, 187, 187);
+    text-align: center;
+}
+
+.container .listManager .items a:hover {
+    border: 1px solid var(--Bcolor);
+    padding: 5px;
+    border-radius: 2px;
+    animation-name: btnItem;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes btnItem {
+    from {
+        border: none;
+    }
+    to {
+        border: 1px solid var(--Bcolor);
+    }
+}
+
+.container .listManager .items .active {
+    border: 1px solid rgba(199, 148, 148, 0.842);
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.container .listManager .items:nth-child(1) {
+    margin-right: auto;
+}
+.listManager .items:nth-child(5) {
+    margin-left: auto;
+}
+
+.container .form-row .col-12 .delete {
+    position: relative;
+    top: -40px;
+    right: 20px;
+    float: right;
+    z-index: 1;
+    color: #fff;
+    font-family: var(--Ftype);
+}
+
+.container .form-row .col-12:hover .delete {
+    color: rgba(185, 25, 25, 0.733);
+}
+
+.container .form-row .col-12 .delete:hover {
+    color: rgba(211, 13, 13, 0.76);
+}
