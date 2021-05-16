@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Todos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Mail;
+
 
 class TodosController extends Controller
 {
@@ -14,7 +17,9 @@ class TodosController extends Controller
     public function index()
     {
         //show todos page
-       return view('index');
+       
+        $todos = Todos::select('id','name','category','status')->get();
+       return view('list', compact('todos'));
     }
 
     /**
@@ -24,17 +29,17 @@ class TodosController extends Controller
      */
     public function create(Request $request)
     {
-        $msg = $request->name;
+        $msg = $request->all();
         if(!empty($msg)){
             $tasks = Todos::create([
-                'name' => $request->name,
-                'category' => $request->category,
-                'status' => $request->status,
+                'name' => $request->taskname,
+                'category' => $request->taskcategory,
+                'status' => $request->taskstatus,
                 ]);
-            return response()->json(array('msg' => $msg), 200); 
+            return response()->json($tasks); 
         }else {
             $msg ="The field is empty";
-            return response()->json(array('msg' => $msg), 200);
+            return response()->json($msg);
         }
         
         //
@@ -68,9 +73,21 @@ class TodosController extends Controller
      * @param  \App\Models\Todos  $todos
      * @return \Illuminate\Http\Response
      */
-    public function edit(Todos $todos)
+    public function edit(Request $request)
     {
-        //
+        //update status of check todo list and send email
+        $task = Todos::where('id',$request->id)->update(['status'=> $request->status]);
+        $msg = "updated";
+        $to_email = "hajar.elyoussfi@hbusiness.digital"; //
+        $from_email = "benchrifamb@gmail.com";
+        $data = array('name' => 'Hajar Elyoussfi', 'body'=>'The todo has been completed');
+        if($request->status == 1) {
+            Mail::send('mail', $data,  function($message) use( $to_email,$from_email, $data) {
+                $message->from($from_email)->subject('Todo list app');
+                $message->to($to_email)->subject('Todo list app');});
+        }
+        return response()->json($msg);
+       
     }
 
     /**
@@ -80,10 +97,13 @@ class TodosController extends Controller
      * @param  \App\Models\Todos  $todos
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Todos $todos)
+    public function update(Request $request)
     {
-        //
+        $task = Todos::where('id',$request->id)->update(['name'=> $request->name]);
+        $msg = "updated";
+        return response()->json($msg);
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -91,8 +111,16 @@ class TodosController extends Controller
      * @param  \App\Models\Todos  $todos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Todos $todos)
+    public function destroy($id)
     {
-        //
+        $task = Todos::where('id',$id)->delete();
+        return response()->json($id);
+    }
+
+    public function destroyall(Request $request)
+    {
+        $task = Todos::where('status', $request->status)->delete();
+        $msg = "the completed todo has been deleted";
+        return response()->json($msg);
     }
 }

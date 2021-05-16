@@ -1,0 +1,255 @@
+:root {
+    --fontF: Verdana, Geneva, Tahoma, sans-serif;
+    --colorT: rgb(223, 193, 198);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(120deg, rgb(238, 238, 238), rgb(243, 243, 243));
+    color: var(--colorT);
+    font-family: var(--fontF);
+    min-height: 100vh;
+    max-width: 80%;
+}
+
+header {
+    font-size: 1.5rem;
+}
+header,
+main form {
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form input {
+    padding: 1.5rem;
+    font-size: 1rem;
+    border: none;
+    background: white;
+    width: 50%;
+    box-shadow: 0px 0px 6px gray;
+}
+
+.EditeInput {
+    padding: 0rem;
+    font-size: 1rem;
+    border: none;
+    background: white;
+    border: 0;
+}
+.EditeInput:focus {
+    border: none;
+}
+
+.EditeInput:focus-visible {
+    border: none;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -38px;
+}
+
+.green {
+    color: rgb(83, 231, 132);
+}
+.todo-list {
+    list-style: none;
+    width: 61.4%;
+}
+
+.todo {
+    margin: 0.05rem;
+    background-color: white;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+
+.deletedBtn,
+.completedBtn {
+    color: white;
+    border: none;
+    padding: 0.48rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.completedBtn {
+    margin-left: 0.2rem;
+    border-radius: 60%;
+    background-color: transparent;
+    border: 1px solid rgb(212, 212, 212);
+}
+.deletedBtn {
+    margin-right: 0.2rem;
+    color: rgb(185, 132, 132);
+    background-color: transparent;
+}
+
+.deletedBtn:hover {
+    color: rgb(231, 83, 83);
+}
+
+.todo-item {
+    text-align: left;
+    padding: 1rem 4.65rem;
+}
+
+.fa-trash,
+.fa-check {
+    pointer-events: none;
+}
+
+.Completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+select {
+    outline: none;
+    border: 1px solid rgb(201, 200, 200);
+}
+
+.sortList {
+    text-align: right;
+    margin: 0rem;
+    position: relative;
+    overflow: hidden;
+}
+
+select {
+    color: orange;
+    width: 8rem;
+    cursor: pointer;
+    padding: 1.5rem;
+    font-size: 1rem;
+}
+
+.sortList::after {
+    content: "\25BC";
+    color: white;
+    background: orange;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    pointer-events: none;
+}
+
+.todoFilter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 100;
+}
+
+.todoFilter ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    background-color: white;
+    color: gray;
+    padding: 1rem;
+    width: 61.3%;
+    position: relative;
+    top: -38px;
+}
+
+.todoFilter ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.2rem;
+    transition: all 200ms ease-out;
+}
+
+.todoFilter ul li:hover {
+    border: 1px solid orange;
+    cursor: pointer;
+}
+
+.todoFilter ul li:nth-child(1) {
+    border: none;
+    cursor: none;
+    padding: 0;
+    transition: none;
+    pointer-events: none;
+}
+
+.todoItemCount {
+    padding-right: 3px;
+}
+
+.todoItemCount::before {
+    content: "(";
+}
+.todoItemCount::after {
+    content: ")";
+    padding-right: 3px;
+}
+
+@media screen and (min-width: 450px) {
+    body {
+        max-width: 100%;
+    }
+    .todo-list {
+        list-style: none;
+        width: 100%;
+    }
+    .todo-item {
+        text-align: left;
+        padding: 0rem 0.5rem;
+    }
+
+    .todo {
+        color: black;
+        font-size: 1rem;
+    }
+    form input {
+        padding: 1.3rem;
+        font-size: 1rem;
+        border: none;
+        background: white;
+        width: 100%;
+    }
+
+    select {
+        color: orange;
+        width: 8rem;
+        cursor: pointer;
+        padding: 1.3rem;
+        font-size: 1rem;
+    }
+    .todoFilter ul {
+        width: 100%;
+    }
+    main {
+        padding: 53px;
+    }
+    .deletedBtn,
+    .completedBtn {
+        padding: 0.3rem;
+        margin: 5px;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    main {
+        padding: 0px 22%;
+    }
+}

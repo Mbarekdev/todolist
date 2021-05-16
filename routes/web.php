@@ -17,6 +17,10 @@ use App\Http\Controllers\TodosController;
 Route::get('/', [TodosController::class, 'index']);
 
 // Add the task to do list route
-Route::get('/addTask', [TodosController::class, 'create']);
-Route::post('/Taskadded', [TodosController::class, 'create']);
+//Route::get('/addTask', [TodosController::class, 'create']);
+Route::post('/Taskadded', [TodosController::class, 'create'])->name('addtask');
+Route::delete('/deleteTask/{id}', [TodosController::class, 'destroy'])->name('deletetask');
+Route::post('/updatecheck/{id}', [TodosController::class, 'edit'])->name('updatecheck');
+Route::post('/deleteAll', [TodosController::class, 'destroyall'])->name('deleteAll');
+Route::post('/updatedtodo', [TodosController::class, 'update'])->name('updatetodo');
 
